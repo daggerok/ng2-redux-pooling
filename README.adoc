@@ -1,0 +1,14 @@
+= ng2-redux-pooling image:https://travis-ci.org/daggerok/ng2-redux-pooling.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/ng2-redux-pooling"]
+
+in progress...
+
+=== build and run
+
+```bash
+gradle assemble boorRun
+```
+
+*links*
+
+- https://spring.io/[spring]
+- http://asciidoctor.org/docs/asciidoc-writers-guide/[adoc]
