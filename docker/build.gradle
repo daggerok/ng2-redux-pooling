@@ -10,19 +10,19 @@ task dockerRun(type: Exec) {
   args '-c', "docker run --rm -d -p 80:8080 -v $rootDir/server/build/libs:/opt daggerok/ng2-redux"
 }
 
-def composePrefix = "docker-compose --project-name app -f $rootDir/docker/src/main/docker/docker-compose.yml"
+def composePrefix = "docker-compose --project-name app -f $rootDir/docker/src/main/docker"
 
 task composeBuild(type: Exec) {
   executable 'bash'
-  args '-c', "$composePrefix rm; $composePrefix build --force-rm"
+  args '-c', "$composePrefix rm; $composePrefix/docker-compose-build.yml build --force-rm"
 }
 
 task composeUp(type: Exec) {
   executable 'bash'
-  args '-c', "$composePrefix rm; $composePrefix up"
+  args '-c', "$composePrefix rm; $composePrefix/docker-compose.yml up"
 }
 
 task composeDown(type: Exec) {
   executable 'bash'
-  args '-c', "$composePrefix down -v --remove-orphans"
+  args '-c', "$composePrefix/docker-compose.yml down -v --remove-orphans"
 }
