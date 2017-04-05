@@ -6,6 +6,8 @@ repo is in progress...
 
 ```bash
 gradle assemble boorRun
+# or
+gradle assemble composeUp
 ```
 
 *links*

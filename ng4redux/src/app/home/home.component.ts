@@ -12,7 +12,7 @@ import {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: [ './home.component.styl' ]
+  styleUrls: ['./home.component.styl']
 })
 export class HomeComponent implements OnInit {
   public state: AppState = INITIAL_STATE;
@@ -23,20 +23,18 @@ export class HomeComponent implements OnInit {
   public ngOnInit() {
     // input
     this.ngRedux.subscribe(() => {
-      setTimeout(() => {
-        console.log('waiting input');
-        this.state = this.ngRedux.getState();
-      }, 2000);
+      console.log('waiting input');
+      this.state = this.ngRedux.getState();
     });
   }
 
   public increment() {
     // output
-    setTimeout(() => {
+    // setTimeout(() => {
       console.log('waiting output');
       this.ngRedux.dispatch({
         type: ActionType.INCREMENT,
       });
-    }, 3000);
+    // }, 333);
   }
 }

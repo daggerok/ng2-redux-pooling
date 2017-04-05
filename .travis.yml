@@ -14,8 +14,18 @@ before_install:
   - sudo apt install -y libappindicator1 fonts-liberation
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
+  # docker
+  - sudo rm /usr/local/bin/docker-compose
+  - export DOCKER_COPOSE_URL=https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)
+  - echo using\ $DOCKER_COPOSE_URL
+  - curl -L $DOCKER_COPOSE_URL > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 script:
-  - gradle clean build
+  - gradle test
+  - gradle clean assemble
+  - gradle composeBuild
+  - gradle dockerBuild
 after_script:
   - if [ -f ng4redux/npm-debug.log ]; then cat ng4redux/npm-debug.log; fi
 cache:

@@ -23,10 +23,6 @@ node {
   yarnVersion = '0.21.3'
 }
 
-test {
-  dependsOn yarn_lint, yarn_e2e
-}
-
 assemble.dependsOn yarn_build
 
 yarn_build.dependsOn yarn_install

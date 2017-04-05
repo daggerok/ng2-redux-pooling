@@ -1,0 +1,28 @@
+version '0.0.1'
+
+task dockerBuild(type: Exec) {
+  executable 'bash'
+  args '-c', "docker build --rm --force-rm -t daggerok/ng2-redux -f $rootDir/docker/src/main/docker/Dockerfile $rootDir"
+}
+
+task dockerRun(type: Exec) {
+  executable 'bash'
+  args '-c', "docker run --rm -d -p 80:8080 -v $rootDir/server/build/libs:/opt daggerok/ng2-redux"
+}
+
+def composePrefix = "docker-compose --project-name app -f $rootDir/docker/src/main/docker/docker-compose.yml"
+
+task composeBuild(type: Exec) {
+  executable 'bash'
+  args '-c', "$composePrefix rm; $composePrefix build --force-rm"
+}
+
+task composeUp(type: Exec) {
+  executable 'bash'
+  args '-c', "$composePrefix rm; $composePrefix up"
+}
+
+task composeDown(type: Exec) {
+  executable 'bash'
+  args '-c', "$composePrefix down -v --remove-orphans"
+}

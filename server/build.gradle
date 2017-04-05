@@ -25,3 +25,4 @@ dependencies {
 }
 
 assemble.dependsOn ':ng4redux:assemble'
+test.dependsOn ':ng4redux:yarn_lint', ':ng4redux:yarn_e2e'
